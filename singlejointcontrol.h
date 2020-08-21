@@ -9,9 +9,15 @@
 
 #include <QDialog>
 
-#include "globaldata.h"
+#include <QTimer>
 
+#include "globaldata.h"
+#include "kinemetics.h"
+#include "Eigen/Core"
+#include "Eigen/Dense"
+#include "armscene.h"
 #include "controls.h"
+
 
 namespace Ui
 {
@@ -24,7 +30,9 @@ class SingleJointControl : public Controls
 
 public:
     explicit SingleJointControl();
-    ~SingleJointControl();
+
+    QStringList positionSlider;
+    QStringList positionSpinBox;
 
 private slots:
     void on_initDriverPushButton_clicked();
@@ -43,12 +51,22 @@ private slots:
 
 
 
+    void on_MotorEnableButton_clicked();
+
+    void on_MotorDisableButton_clicked();
+
 private:
     Ui::SingleJointControl *ui;
+
+    arm *ur;
+    ArmScene *modifier;
+
+    double armAngle[1];
 
     void initObject();
 
     void keyPressEvent(QKeyEvent *e) override;
+
 };
 
 #endif // SINGLEJOINTCONTROL_H

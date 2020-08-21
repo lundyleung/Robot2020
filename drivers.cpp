@@ -191,3 +191,26 @@ void Drivers::calJoint()
     double value[NODE_NUM] = {0}; //数据位为0
     Package::packOperateMulti(globalData->sendId, value, NODE_NUM, PROTOCOL_TYPE_CAL);
 }
+/**
+ * @brief 打开电机
+ *
+ */
+void Drivers::EnableMotor(int nodeNum)
+{
+    if (nodeNum < 0 || nodeNum > NODE_NUM - 1)
+        return;
+    double value = 0; //数据位为0
+    Package::packOperate(globalData->sendId[nodeNum], value, PROTOCOL_TYPE_START);
+}
+/**
+ * @brief 关闭电机
+ *
+ */
+void Drivers::DisableMotor(int nodeNum)
+{
+    if (nodeNum < 0 || nodeNum > NODE_NUM - 1)
+        return;
+    double value = 0; //数据位为0
+    Package::packOperate(globalData->sendId[nodeNum], value, PROTOCOL_TYPE_SHUTDOWN);
+}
+

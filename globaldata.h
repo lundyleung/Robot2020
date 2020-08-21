@@ -59,7 +59,7 @@ enum
 // #define DELAY_INIT 5
 
 //配置变量
-#define NODE_NUM 16
+#define NODE_NUM 8
 #define DRIVE_NEW 1
 #define CAN_MAX_FRAM 100
 #define SIMULATE_CONNECT NONE_CONNECT //CONNECT_TYPE_ALYSIST

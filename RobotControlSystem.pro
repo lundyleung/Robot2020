@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui qml quick gamepad network 3dextras
-
+QT       += serialport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = RobotControlSystem

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>360</width>
-    <height>235</height>
+    <width>395</width>
+    <height>342</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -283,16 +283,16 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="caliPushButton">
+      <widget class="QPushButton" name="MotorEnableButton">
        <property name="text">
-        <string>校正</string>
+        <string>使能电机</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="emergencyStopPushButton">
+      <widget class="QPushButton" name="MotorDisableButton">
        <property name="text">
-        <string>急停(ALT+A)</string>
+        <string>关闭电机</string>
        </property>
       </widget>
      </item>
@@ -318,6 +318,31 @@
       <widget class="QPushButton" name="CloseValvePushButton">
        <property name="text">
         <string>关电磁阀</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QPushButton" name="caliPushButton">
+       <property name="text">
+        <string>校正</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="CloseValvePushButton_2">
+       <property name="text">
+        <string>空</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="emergencyStopPushButton">
+       <property name="text">
+        <string>急停(ALT+A)</string>
        </property>
       </widget>
      </item>

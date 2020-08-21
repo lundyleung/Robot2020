@@ -63,6 +63,7 @@ private:
     void initObject();
     void ReconfigAct(int);
     void PlatformAct(int);
+    void PlatformMode(int);
     void PlatformSpeedControl(double);
     void PlatformPositionControl(double);
     void ReconfigSpeedControl(double);
@@ -92,11 +93,13 @@ private slots:
     void on_PlatformReModepushButton_clicked();
     void on_PlatformPosModepushButton_clicked();
 
-    void on_PlatformFWpushButton_pressed();
-    void on_PlatformFWpushButton_released();
+//    void on_PlatformFWpushButton_pressed();
+//    void on_PlatformFWpushButton_released();
+    void on_PlatformFWpushButton_clicked();
 
-    void on_PlatformBWpushButton_pressed();
-    void on_PlatformBWpushButton_released();
+//    void on_PlatformBWpushButton_pressed();
+//    void on_PlatformBWpushButton_released();
+    void on_PlatformBWpushButton_clicked();
 
 
 //    void on_ReOpenpushButton_clicked();

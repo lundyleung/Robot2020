@@ -44,13 +44,13 @@
 
 unsigned char FlatformSpeedMode[8]      = {0x08,0x11,0x2A,0x00,0x00,0x00,0x00,0x00};
 unsigned char FlatformRePositionMode[8] = {0x08,0x11,0x2A,0x00,0x00,0x01,0x00,0x00};
-unsigned char ForwardCode[8]            = {0x08,0x11,0x90,0x00,0x88,0x13,0x00,0x00};
-unsigned char BackwardCode[8]           = {0x08,0x11,0x90,0x00,0x78,0xEC,0xFF,0xFF};
-unsigned char FlatformStopCode[8]       = {0x08,0x11,0x90,0x00,0x00,0x00,0x00,0x00};
+unsigned char ForwardCode[8]            = {0x9A,0x00,0x00,0xC8,0x00,0x5A,0x00,0x01};
+unsigned char BackwardCode[8]           = {0x9A,0xFF,0x00,0xC8,0x00,0x5A,0x00,0x01};
+unsigned char FlatformStopCode[8]       = {0x9A,0x00,0x00,0x00,0x00,0x00,0x00,0x02};
 
 unsigned char OpenCode[8]       = {0x9A,0x00,0x00,0xC8,0x00,0x00,0x00,0x01};
 unsigned char CloseCode[8]      = {0x9A,0xFF,0x00,0xC8,0x00,0x00,0x00,0x01};
-unsigned char ReStopCode[8]     = {0x9A,0x00,0x00,0x00,0x00,0x00,0x00,0x01};
+unsigned char ReStopCode[8]     = {0x9A,0x00,0x00,0x00,0x00,0x00,0x00,0x02};
 
 /**
  * @brief Construct a new Reconfig Control:: Reconfig Control object
@@ -304,7 +304,7 @@ void ReconfigControl::ForwardReversalPushbtnClicked()
 void ReconfigControl::on_PlatformReModepushButton_clicked()
 {
 
-    PlatformAct(Platform_SpeedMode);
+    PlatformMode(Platform_SpeedMode);
 }
 
 
@@ -315,7 +315,7 @@ void ReconfigControl::on_PlatformReModepushButton_clicked()
 void ReconfigControl::on_PlatformPosModepushButton_clicked()
 {
 
-    PlatformAct(Platform_RePositionMode);
+    PlatformMode(Platform_RePositionMode);
 }
 
 
@@ -323,30 +323,32 @@ void ReconfigControl::on_PlatformPosModepushButton_clicked()
  * @brief 平台前进
  *
  */
-void ReconfigControl::on_PlatformFWpushButton_pressed()
+//void ReconfigControl::on_PlatformFWpushButton_pressed()
+void ReconfigControl::on_PlatformFWpushButton_clicked()
 {
     PlatformAct(Platform_Forward);
 }
 
-void ReconfigControl::on_PlatformFWpushButton_released()
-{
-    PlatformAct(Platform_STOP);
-}
+//void ReconfigControl::on_PlatformFWpushButton_released()
+//{
+//    PlatformAct(Platform_STOP);
+//}
 
 
 /**
  * @brief 平台后退
  *
  */
-void ReconfigControl::on_PlatformBWpushButton_pressed()
+//void ReconfigControl::on_PlatformBWpushButton_pressed()
+void ReconfigControl::on_PlatformBWpushButton_clicked()
 {
     PlatformAct(Platform_Backward);
 }
 
-void ReconfigControl::on_PlatformBWpushButton_released()
-{
-    PlatformAct(Platform_STOP);
-}
+//void ReconfigControl::on_PlatformBWpushButton_released()
+//{
+//    PlatformAct(Platform_STOP);
+//}
 
 /**
  * @brief 臂杆分离
@@ -378,10 +380,10 @@ void ReconfigControl::on_ReClosepushButton_released()
 }
 
 /**
- * @brief 可重构平台控制 1前进  2后退
+ * @brief 可重构平台模式选择
  *
  */
-void ReconfigControl::PlatformAct(int action)
+void ReconfigControl::PlatformMode(int action)
 {
     unsigned int currentId = 17;
     int ret;
@@ -393,6 +395,36 @@ void ReconfigControl::PlatformAct(int action)
         case Platform_RePositionMode://平台位置模式
             ret = DataTransmission::CANTransmit(globalData->connectType, FlatformRePositionMode, currentId);
         break;
+
+    }
+
+    if (ret == -1)
+    {
+        qDebug() << "failed- device not open"; //=-1表示USB-CAN设备不存在或USB掉线
+        return;
+    }
+    else if (ret == 0)
+    {
+        qDebug() << "send error";
+        return;
+    }
+    else
+    {
+        qDebug() << "send successful";
+    }
+}
+
+/**
+ * @brief 释放平台控制 1前进  2后退
+ *
+ */
+void ReconfigControl::PlatformAct(int action)
+{
+    unsigned int currentId = 19;
+    int ret;
+    switch (action)
+    {
+
         case Platform_Forward://平台前进
             ret = DataTransmission::CANTransmit(globalData->connectType, ForwardCode, currentId);
             break;

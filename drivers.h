@@ -27,7 +27,8 @@ public:
     static void faultJoint(int nodeNum);
     static void initValve(int nodeNum);
     static void CloseValve(int nodeNum);
-
+    static void EnableMotor(int nodeNum);
+    static void DisableMotor(int nodeNum);
 };
 
 #endif // DRIVERS_H

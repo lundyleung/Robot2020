@@ -493,14 +493,14 @@
     <item>
      <widget class="QPushButton" name="PlatformFWpushButton">
       <property name="text">
-       <string>平台前进</string>
+       <string>绳索释放</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QPushButton" name="PlatformBWpushButton">
       <property name="text">
-       <string>平台后退</string>
+       <string>绳索下拉</string>
       </property>
      </widget>
     </item>
